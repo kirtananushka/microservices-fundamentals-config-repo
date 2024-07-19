@@ -8,7 +8,7 @@ spring:
   application:
     name: "song-svc"
   config:
-    import: "configserver:"
+    import: "configserver:http://config-svc:8888"
   cloud:
     bus:
       enabled: true

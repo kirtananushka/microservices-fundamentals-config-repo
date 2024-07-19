@@ -9,7 +9,7 @@ spring:
   application:
     name: "resource-svc"
   config:
-    import: "configserver:"
+    import: "configserver:http://config-svc:8888"
   cloud:
     bus:
       enabled: true
