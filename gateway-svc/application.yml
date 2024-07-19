@@ -1,6 +1,5 @@
 server:
   port: 8070
-
 spring:
   application:
     name: "gateway-svc"
@@ -28,7 +27,18 @@ spring:
           uri: lb://song-svc
           predicates:
             - Path=/songs/**
-
+        - id: eureka-service
+          uri: lb://eureka-svc
+          predicates:
+            - Path=/eureka-svc/**
+        - id: config-service
+          uri: lb://config-svc
+          predicates:
+            - Path=/config-svc/**
+        - id: resource-proc-service
+          uri: lb://resource-proc
+          predicates:
+            - Path=/resource-proc/**
 eureka:
   client:
     serviceUrl:
@@ -36,7 +46,6 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 30
-
 management:
   endpoint:
     health:
@@ -44,8 +53,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: bus-refresh, health, info, env
       base-path: /
       path-mapping:
         health: gateway-svc/health
-

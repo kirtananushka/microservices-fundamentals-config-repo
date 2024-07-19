@@ -41,7 +41,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: bus-refresh, health, info, env
       base-path: /
       path-mapping:
         health: eureka-svc/health
+

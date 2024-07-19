@@ -43,7 +43,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: bus-refresh, health, info, env
       base-path: /
       path-mapping:
         health: song-svc/health
