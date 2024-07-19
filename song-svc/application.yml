@@ -1,0 +1,38 @@
+server:
+  port: 8072
+logging:
+  level:
+    root: warn
+    com.tananushka.song.svc: info
+spring:
+  application:
+    name: "song-svc"
+  cloud:
+    config:
+      uri: http://localhost:8888
+  datasource:
+    url: "jdbc:postgresql://${DB_HOST:localhost}:5432/song_svc_db"
+    username: "${DB_USERNAME}"
+    password: "${DB_PASSWORD}"
+  jpa:
+    properties:
+      hibernate:
+        dialect=org.hibernate.dialect.PostgreSQLDialect
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: "http://${EUREKA_HOST:localhost}:8761/eureka/"
+management:
+  endpoint:
+    health:
+      show-details: always
+      group:
+        custom:
+          include: db
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+      base-path: /
+      path-mapping:
+        health: song-svc/health
