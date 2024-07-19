@@ -11,9 +11,20 @@ spring:
   application:
     name: "eureka-svc"
   cloud:
-    config:
-      uri: http://localhost:8888
-
+    bus:
+      enabled: true
+    stream:
+      defaultBinder: rabbit
+      rabbit:
+        binder:
+          environment:
+            spring:
+              rabbitmq:
+                host: "${RABBITMQ_HOST:localhost}"
+                port: 5672
+                username: "${RABBITMQ_USERNAME}"
+                password: "${RABBITMQ_PASSWORD}"
+                
 eureka:
   instance:
     hostname: "${HOSTNAME:localhost}"
