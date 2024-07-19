@@ -9,6 +9,8 @@ logging:
 spring:
   application:
     name: "resource-proc"
+  config:
+    import: "configserver:"
   cloud:
     bus:
       enabled: true

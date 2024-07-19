@@ -3,9 +3,8 @@ server:
 spring:
   application:
     name: "gateway-svc"
-  cloud:
-    bus:
-      enabled: true
+  config:
+    import: "configserver:"
     stream:
       defaultBinder: rabbit
       rabbit:
@@ -39,6 +38,9 @@ spring:
           uri: lb://resource-proc
           predicates:
             - Path=/resource-proc/**
+  cloud:
+    bus:
+      enabled: true
 eureka:
   client:
     serviceUrl:

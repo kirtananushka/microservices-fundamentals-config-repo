@@ -8,6 +8,8 @@ logging:
 spring:
   application:
     name: "resource-svc"
+  config:
+    import: "configserver:"
   cloud:
     bus:
       enabled: true
