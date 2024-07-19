@@ -14,15 +14,6 @@ spring:
       enabled: true
     stream:
       defaultBinder: rabbit
-#      rabbit:
-#        binder:
-#          environment:
-#            spring:
-#              rabbitmq:
-#                host: "${RABBITMQ_HOST:localhost}"
-#                port: 5672
-#                username: "${RABBITMQ_USERNAME}"
-#                password: "${RABBITMQ_PASSWORD}"
   rabbitmq:
     host: "${RABBITMQ_HOST:localhost}"
     port: 5672

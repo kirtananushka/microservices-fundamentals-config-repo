@@ -4,18 +4,17 @@ spring:
   application:
     name: "gateway-svc"
   config:
-    import: "configserver:http://config-svc:8888"
+    import: "configserver:http://${CONFIG_SVC_HOST:localhost}:8888"
+  rabbitmq:
+    host: "${RABBITMQ_HOST:localhost}"
+    port: 5672
+    username: "${RABBITMQ_USERNAME}"
+    password: "${RABBITMQ_PASSWORD}"
+  cloud:
+    bus:
+      enabled: true
     stream:
       defaultBinder: rabbit
-      rabbit:
-        binder:
-          environment:
-            spring:
-              rabbitmq:
-                host: "${RABBITMQ_HOST:localhost}"
-                port: 5672
-                username: "${RABBITMQ_USERNAME}"
-                password: "${RABBITMQ_PASSWORD}"
     gateway:
       routes:
         - id: resource-service
@@ -38,9 +37,6 @@ spring:
           uri: lb://resource-proc
           predicates:
             - Path=/resource-proc/**
-  cloud:
-    bus:
-      enabled: true
 eureka:
   client:
     serviceUrl:
