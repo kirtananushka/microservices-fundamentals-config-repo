@@ -12,6 +12,9 @@ spring:
           clone-on-start: true
 
 management:
+  endpoint:
+    health:
+      show-details: always
   endpoints:
     web:
       exposure:

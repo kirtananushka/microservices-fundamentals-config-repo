@@ -37,6 +37,18 @@ spring:
           uri: lb://resource-proc
           predicates:
             - Path=/resource-proc/**
+        - id: resource-proc-health
+          uri: lb://resource-proc
+          predicates:
+            - Path=/resource-proc/health/**
+        - id: resource-svc-health
+          uri: lb://resource-svc
+          predicates:
+            - Path=/resource-svc/health/**
+        - id: song-svc-health
+          uri: lb://song-svc
+          predicates:
+            - Path=/song-svc/health/**
 eureka:
   client:
     serviceUrl:
